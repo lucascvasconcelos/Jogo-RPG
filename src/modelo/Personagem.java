@@ -19,6 +19,14 @@ public class Personagem {
 		this.ataque = ataque;
 		this.defesa = defesa;
 	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public int getNivel() {
 		return nivel;

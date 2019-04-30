@@ -38,25 +38,29 @@ public abstract class DAO<T> implements DAOInterface<T> {
 		config.common().objectClass(Personagem.class).cascadeOnDelete(false);;
 		config.common().objectClass(Personagem.class).cascadeOnUpdate(true);;
 		config.common().objectClass(Personagem.class).cascadeOnActivate(true);	
-//		config.common().objectClass(Autor.class).cascadeOnDelete(false);;
-//		config.common().objectClass(Autor.class).cascadeOnUpdate(true);;
-//		config.common().objectClass(Autor.class).cascadeOnActivate(true);		
+		config.common().objectClass(Conta.class).cascadeOnDelete(false);;
+		config.common().objectClass(Conta.class).cascadeOnUpdate(true);;
+		config.common().objectClass(Conta.class).cascadeOnActivate(true);		
 		// 		indexacao de atributos
-		config.common().objectClass(Personagem.class).objectField("titulo").indexed(true);
+		config.common().objectClass(Personagem.class).objectField("nome").indexed(true);
+		config.common().objectClass(Conta.class).objectField("usuario").indexed(true);
+
 		manager = 	Db4oEmbedded.openFile(config, "banco.db4o");
 	}
 
 	public static void abrirBancoServidor(){
 		ClientConfiguration config = Db4oClientServer.newClientConfiguration( ) ;
 		config.common().messageLevel(0);   //0,1,2,3,4
-		config.common().objectClass(Personagem.class).cascadeOnDelete(false);;
+		config.common().objectClass(Personagem.class).cascadeOnDelete(true);;
 		config.common().objectClass(Personagem.class).cascadeOnUpdate(true);;
 		config.common().objectClass(Personagem.class).cascadeOnActivate(true);	
-//		config.common().objectClass(Autor.class).cascadeOnDelete(false);;
-//		config.common().objectClass(Autor.class).cascadeOnUpdate(true);;
-//		config.common().objectClass(Autor.class).cascadeOnActivate(true);		
+		config.common().objectClass(Conta.class).cascadeOnDelete(false);;
+		config.common().objectClass(Conta.class).cascadeOnUpdate(true);;
+		config.common().objectClass(Conta.class).cascadeOnActivate(true);		
 //		// 		indexacao de atributos
 		config.common().objectClass(Personagem.class).objectField("titulo").indexed(true);
+		config.common().objectClass(Conta.class).objectField("usuario").indexed(true);
+
 		String ip = JOptionPane.showInputDialog("Digite o IP do servidor");
 		if (ip==null || ip.isEmpty())	{
 			System.out.println("ip invalido");

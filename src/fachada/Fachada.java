@@ -3,11 +3,13 @@ package fachada;
 import java.util.List;
 
 import dao.DAO;
+import dao.DAOConta;
 import dao.DAOPersonagem;
 import modelo.*;
 
 public class Fachada {
 	private static DAOPersonagem daopersonagem = new DAOPersonagem();
+	private static DAOConta daoconta = new DAOConta();
 	
 	public static void inicializar(){
 		DAO.open();
@@ -30,6 +32,17 @@ public class Fachada {
 		return personagem;
 	}
 	
+	public static void removerPersonagem(Personagem personagem) throws Exception{
+		DAO.begin();
+		Personagem p = daopersonagem.read(personagem.getNome());
+		if(p==null) {
+			throw new Exception("Personagem não existe!!");
+		}
+		daopersonagem.delete(personagem);		
+		DAO.commit();
+		
+	}
+	
 	public static String listarPersonagens() {
 		String lista = "\nLista de Personagens: ";
 		List<Personagem> personagens = daopersonagem.readAll();
@@ -38,4 +51,21 @@ public class Fachada {
 		}
 		return lista;
 	}
+	
+	public static Conta criarConta(String usuario, String senha, String email) throws Exception{
+		DAO.begin();
+		
+		Conta conta = daoconta.read(usuario);
+		if(conta != null) {
+			throw new Exception("Usuário já existe: " + usuario);
+		}
+		conta = new Conta(usuario, senha, email);
+		daoconta.create(conta);
+		DAO.commit();
+		return conta;
+	}
+	
+	
+	
+	
 }
