@@ -2,5 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/BibliotecaDB4O-dao/lib/db4o-8.1.249.16099-core-java5.jar"/>
+	<classpathentry kind="lib" path="/BibliotecaDB4O-dao/lib/db4o-8.1.249.16099-cs-java5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
