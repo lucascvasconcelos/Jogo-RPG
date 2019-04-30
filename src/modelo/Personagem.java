@@ -59,5 +59,12 @@ public class Personagem {
 	public void setItensPersonagem(List<Item> itensPersonagem) {
 		this.itensPersonagem = itensPersonagem;
 	}
+
+	@Override
+	public String toString() {
+		return "Personagem [nome=" + nome + ", nivel=" + nivel + ", vida=" + vida + ", ataque=" + ataque + ", defesa="
+				+ defesa + ", itensPersonagem=" + itensPersonagem + "]";
+	}
+	
 	
 }
