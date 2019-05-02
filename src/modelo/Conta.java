@@ -14,6 +14,11 @@ public class Conta {
 		this.senha = senha;
 		this.email = email;
 	}
+	
+	public String getUsuario() {
+		return usuario;
+	}
+
 	public String getSenha() {
 		return senha;
 	}
@@ -29,6 +34,7 @@ public class Conta {
 	public List<Personagem> getPersonagens() {
 		return personagens;
 	}
+	
 	public void setPersonagens(List<Personagem> personagens) {
 		this.personagens = personagens;
 	}

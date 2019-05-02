@@ -9,8 +9,9 @@ public class Teste {
 	protected static ObjectContainer manager;
 	public Teste(){
 		Fachada.inicializar();
-		listarPersonagens();
+		
 		cadastrar();
+		listarPersonagens();
 		Fachada.finalizar();
 	}
 	

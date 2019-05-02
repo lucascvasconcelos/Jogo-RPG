@@ -10,6 +10,7 @@ import modelo.*;
 public class Fachada {
 	private static DAOPersonagem daopersonagem = new DAOPersonagem();
 	private static DAOConta daoconta = new DAOConta();
+	private static Conta contaAtual = null;
 	
 	public static void inicializar(){
 		DAO.open();
@@ -21,12 +22,18 @@ public class Fachada {
 	
 	public static Personagem criarPersonagem(String nome, int nivel, double vida, double ataque, double defesa) throws Exception{
 		DAO.begin();
+		
+		if(contaAtual==null) {
+			throw new Exception("Você precisa está logado");
+		}
+		
 		Personagem personagem = daopersonagem.read(nome);
 		if(personagem != null){
 			throw new Exception("Personagem já cadastrado: " + personagem);
 		}
 		personagem = new Personagem(nome, nivel, vida, ataque, defesa);
 		daopersonagem.create(personagem);
+		daoconta
 		DAO.commit();
 		
 		return personagem;
