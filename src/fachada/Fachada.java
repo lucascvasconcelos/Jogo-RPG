@@ -1,15 +1,18 @@
 package fachada;
-
+import modelo.*;
 import java.util.List;
 
 import dao.DAO;
 import dao.DAOConta;
 import dao.DAOPersonagem;
+import dao.DAOTipoPersonagem;
 import modelo.*;
 
 public class Fachada {
 	private static DAOPersonagem daopersonagem = new DAOPersonagem();
 	private static DAOConta daoconta = new DAOConta();
+	private static DAOTipoPersonagem daotipopersonagem = new DAOTipoPersonagem();
+
 	private static Conta contaAtual = null;
 	
 	public static void inicializar(){
@@ -20,12 +23,42 @@ public class Fachada {
 		DAO.close();
 	}
 	
-	public static Conta login(String usuario, String senha) {
+	public static void login(String usuario, String senha)throws Exception{
+		if(contaAtual!=null) {
+			throw new Exception("Você já está logado!!");
+		}
+		List<Conta> contas = daoconta.readAll();
+		for(Conta c:contas) {
+			if(c.getUsuario().equals(usuario) && c.getSenha().equals(senha)) {
+				contaAtual = c;
+			}
+		}
+		if(contaAtual==null) {
+			throw new Exception("Usuário e senha inválidos!!");
+		}
 		
-		return null;
 	}
-	public static Personagem criarPersonagem(String nome, int nivel, double vida, double ataque, double defesa) throws Exception{
+	
+	public static TipoPersonagem criarTipoPersonagem(String descricao) throws Exception {
 		DAO.begin();
+		TipoPersonagem tipo = daotipopersonagem.read(descricao);
+		if(tipo!=null) {
+			throw new Exception("Tipo já existe!!");
+		}
+		tipo = new TipoPersonagem(descricao);
+		daotipopersonagem.create(tipo);
+		DAO.commit();
+		return tipo;
+	}
+	
+	public static Personagem criarPersonagem(String nome, String descricao) throws Exception{
+		DAO.begin();
+		
+		TipoPersonagem tipo = daotipopersonagem.read(descricao);
+		if(tipo==null) {
+			throw new Exception("Tipo nao cadastrado!!");
+		}
+		
 		
 		if(contaAtual==null) {
 			throw new Exception("Você precisa está logado");
@@ -35,8 +68,10 @@ public class Fachada {
 		if(personagem != null){
 			throw new Exception("Personagem já cadastrado: " + personagem);
 		}
-		personagem = new Personagem(nome, nivel, vida, ataque, defesa);
+		personagem = new Personagem(nome, tipo);
 		daopersonagem.create(personagem);
+		contaAtual.addPersonagem(personagem);
+		daoconta.update(contaAtual);
 		DAO.commit(); 
 		return personagem;
 	}
@@ -49,7 +84,6 @@ public class Fachada {
 		}
 		daopersonagem.delete(personagem);		
 		DAO.commit();
-		
 	}
 	
 	public static String listarPersonagens() {

@@ -19,7 +19,8 @@ public class Teste {
 		System.out.println("Cadastrando...");
 
 		try {
-			Fachada.criarPersonagem("aksjdha", 1, 2, 3, 4);
+			
+			Fachada.criarPersonagem("aksjdha", "ksjhda");
 			
 		}catch (Exception e) {
 			System.out.println(e.getMessage());

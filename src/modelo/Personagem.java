@@ -9,15 +9,17 @@ public class Personagem {
 	private double vida;
 	private double ataque;
 	private double defesa;
+	private TipoPersonagem tipo;
 	private List<Item> itensPersonagem = new ArrayList<Item>();
 	
-	public Personagem(String nome, int nivel, double vida, double ataque, double defesa) {
+	public Personagem(String nome,  TipoPersonagem tipo) {
 		super();
 		this.nome = nome;
-		this.nivel = nivel;
-		this.vida = vida;
-		this.ataque = ataque;
-		this.defesa = defesa;
+		this.nivel = 1;
+		this.vida = 500;
+		this.ataque = 100;
+		this.defesa = 50;
+		this.tipo = tipo;
 	}
 	
 	public String getNome() {

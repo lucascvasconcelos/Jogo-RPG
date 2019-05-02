@@ -48,6 +48,9 @@ public class Conta {
 		this.personagens = personagens;
 	}
 	
+	public void addPersonagem(Personagem personagem) {
+		personagens.add(personagem);
+	}
 	
 	
 }
