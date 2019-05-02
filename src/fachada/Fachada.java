@@ -20,6 +20,10 @@ public class Fachada {
 		DAO.close();
 	}
 	
+	public static Conta login(String usuario, String senha) {
+		
+		return null;
+	}
 	public static Personagem criarPersonagem(String nome, int nivel, double vida, double ataque, double defesa) throws Exception{
 		DAO.begin();
 		
@@ -33,9 +37,7 @@ public class Fachada {
 		}
 		personagem = new Personagem(nome, nivel, vida, ataque, defesa);
 		daopersonagem.create(personagem);
-		daoconta
-		DAO.commit();
-		
+		DAO.commit(); 
 		return personagem;
 	}
 	
@@ -71,8 +73,5 @@ public class Fachada {
 		DAO.commit();
 		return conta;
 	}
-	
-	
-	
 	
 }

@@ -15,6 +15,15 @@ public class Conta {
 		this.email = email;
 	}
 	
+	public Personagem localizarPersonagem(String nome) {
+		for(Personagem p: personagens) {
+			if (p.getNome().equals(nome)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
 	public String getUsuario() {
 		return usuario;
 	}
