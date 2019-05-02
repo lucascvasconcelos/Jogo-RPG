@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.DAO;
 import dao.DAOConta;
+import dao.DAOItem;
 import dao.DAOPersonagem;
 import dao.DAOTipoPersonagem;
 import modelo.*;
@@ -11,6 +12,8 @@ import modelo.*;
 public class Fachada {
 	private static DAOPersonagem daopersonagem = new DAOPersonagem();
 	private static DAOConta daoconta = new DAOConta();
+	private static DAOItem daoitem = new DAOItem();
+
 	private static DAOTipoPersonagem daotipopersonagem = new DAOTipoPersonagem();
 
 	private static Conta contaAtual = null;
@@ -108,4 +111,15 @@ public class Fachada {
 		return conta;
 	}
 	
+	public static Item criarItem(String nome, int nivel, int ataque, int defesa, double vida, float preco)throws Exception {
+		DAO.begin();
+		Item item = daoitem.read(nome);
+		if (item!=null) {
+			throw new Exception("Item existente!!");
+		}
+		item = new Item(nome , nivel, ataque, defesa, vida, preco);
+		daoitem.create(item);
+		DAO.commit();
+		return item;
+	}
 }
