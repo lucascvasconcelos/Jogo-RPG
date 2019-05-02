@@ -76,13 +76,13 @@ public class Fachada {
 		return personagem;
 	}
 	
-	public static void removerPersonagem(Personagem personagem) throws Exception{
+	public static void removerPersonagem(String personagem) throws Exception{
 		DAO.begin();
-		Personagem p = daopersonagem.read(personagem.getNome());
+		Personagem p = daopersonagem.read(personagem);
 		if(p==null) {
 			throw new Exception("Personagem não existe!!");
 		}
-		daopersonagem.delete(personagem);		
+		daopersonagem.delete(p);		
 		DAO.commit();
 	}
 	

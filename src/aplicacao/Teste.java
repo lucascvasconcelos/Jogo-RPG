@@ -9,8 +9,9 @@ public class Teste {
 	protected static ObjectContainer manager;
 	public Teste(){
 		Fachada.inicializar();
-		
 		cadastrar();
+		listarPersonagens();
+		removerPersonagem();
 		listarPersonagens();
 		Fachada.finalizar();
 	}
@@ -19,10 +20,20 @@ public class Teste {
 		System.out.println("Cadastrando...");
 
 		try {
-			
-			Fachada.criarPersonagem("aksjdha", "ksjhda");
+			Fachada.criarConta("usuario", "senha", "email");
+			Fachada.login("usuario", "senha");
+			Fachada.criarTipoPersonagem("guerreiro");
+			Fachada.criarPersonagem("Lucas", "guerreiro");
 			
 		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void removerPersonagem() {
+		try {
+			Fachada.removerPersonagem("Lkjhucas");
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
