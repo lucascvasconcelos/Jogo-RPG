@@ -24,7 +24,9 @@ public class Teste {
 			Fachada.login("usuario", "senha");
 			Fachada.criarTipoPersonagem("guerreiro");
 			Fachada.criarPersonagem("Lucas", "guerreiro");
-			
+			Fachada.criarItem("ARMADURA", 1, 2, 2, 2, 5);
+			Fachada.adicionarItemPersonagem("Lucas", "ARMADURA");
+			Fachada.equiparItem("Lucas", "ARMADURA");
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

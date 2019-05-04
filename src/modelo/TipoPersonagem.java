@@ -23,4 +23,11 @@ public class TipoPersonagem {
 			}
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "TipoPersonagem [descricao=" + descricao + "]";
+	}
+	
+	
 }

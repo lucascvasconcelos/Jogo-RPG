@@ -10,6 +10,7 @@ public class Personagem {
 	private double ataque;
 	private double defesa;
 	private TipoPersonagem tipo;
+	private List<Item> itensEquipados = new ArrayList<>();
 	private List<Item> itensPersonagem = new ArrayList<Item>();
 	
 	public Personagem(String nome,  TipoPersonagem tipo) {
@@ -65,16 +66,23 @@ public class Personagem {
 	public List<Item> getItensPersonagem() {
 		return itensPersonagem;
 	}
+	public List<Item> getItensEquipados(){
+		return itensEquipados;
+	}
 
 	public void setItensPersonagem(List<Item> itensPersonagem) {
 		this.itensPersonagem = itensPersonagem;
+	}
+	
+	public void addItem(Item item) {
+		itensPersonagem.add(item);
 	}
 
 	@Override
 	public String toString() {
 		return "Personagem [nome=" + nome + ", nivel=" + nivel + ", vida=" + vida + ", ataque=" + ataque + ", defesa="
-				+ defesa + ", itensPersonagem=" + itensPersonagem + "]";
+				+ defesa + ", tipo=" + tipo + ", itensEquipados=" + itensEquipados + ", itensPersonagem="
+				+ itensPersonagem + "]";
 	}
-	
 	
 }

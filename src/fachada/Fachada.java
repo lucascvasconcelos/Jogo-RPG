@@ -122,4 +122,40 @@ public class Fachada {
 		DAO.commit();
 		return item;
 	}
+	
+	public static void adicionarItemPersonagem(String nomePersonagem, String nomeItem)throws Exception {
+		DAO.begin();
+		Item item = daoitem.read(nomeItem);
+		if (item==null) {
+			throw new Exception("Esse item não existe!!");
+		}
+		Personagem personagem = daopersonagem.read(nomePersonagem);
+		personagem.addItem(item);
+		daopersonagem.update(personagem);
+		DAO.commit();
+	}
+	
+//	Quando se equipa o item, o persongaem tem alterações na vida, ataque e defesa
+	public static void equiparItem(String nomePersonagem, String nomeItem) throws Exception{
+		DAO.begin();
+		Item itemEquipado = null;
+		Personagem personagem = daopersonagem.read(nomePersonagem);
+		for(Item item: personagem.getItensPersonagem()){
+			if(item.getNome().equals(nomeItem)) {
+				itemEquipado = item;
+			}
+		}
+		if(itemEquipado==null) {
+			throw new Exception("O seu personagem ainda não possui esse item!!");
+		}
+		personagem.getItensEquipados().add(itemEquipado);
+		double ataqueAtual = personagem.getAtaque() + itemEquipado.getAtaque();
+		double defesaAtual = personagem.getDefesa() + itemEquipado.getDefesa();
+		double vidaAtual = personagem.getVida() + itemEquipado.getVida();
+		personagem.setAtaque(ataqueAtual);
+		personagem.setDefesa(defesaAtual);
+		personagem.setVida(vidaAtual);
+		daopersonagem.update(personagem);
+		DAO.commit();
+	}
 }

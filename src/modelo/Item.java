@@ -65,7 +65,11 @@ public class Item {
 	public void setPreco(float preco) {
 		this.preco = preco;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Item [nome=" + nome + "]";
+	}
 	
 	
 }
