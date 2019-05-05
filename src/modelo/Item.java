@@ -7,8 +7,9 @@ public class Item {
 	private int defesa;
 	private double vida;
 	private float preco;
+	private String tipo;
 	
-	public Item(String nome, int nivel, int ataque, int defesa, double vida, float preco) {
+	public Item(String nome, int nivel, int ataque, int defesa, double vida, float preco, String tipo) {
 		super();
 		this.nome = nome;
 		this.nivel = nivel;
@@ -16,6 +17,7 @@ public class Item {
 		this.defesa = defesa;
 		this.vida = vida;
 		this.preco = preco;
+		this.tipo = tipo;
 	}
 
 	public String getNome() {
@@ -64,6 +66,15 @@ public class Item {
 
 	public void setPreco(float preco) {
 		this.preco = preco;
+	}
+	
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

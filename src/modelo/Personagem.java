@@ -9,6 +9,7 @@ public class Personagem {
 	private double vida;
 	private double ataque;
 	private double defesa;
+	private float gold;
 	private TipoPersonagem tipo;
 	private List<Item> itensEquipados = new ArrayList<>();
 	private List<Item> itensPersonagem = new ArrayList<Item>();
@@ -21,8 +22,20 @@ public class Personagem {
 		this.ataque = 100;
 		this.defesa = 50;
 		this.tipo = tipo;
+		this.gold = 1000; 
 	}
 	
+	
+	public float getGold() {
+		return gold;
+	}
+
+
+	public void setGold(float gold) {
+		this.gold = gold;
+	}
+
+
 	public String getNome() {
 		return nome;
 	}
@@ -76,6 +89,9 @@ public class Personagem {
 	
 	public void addItem(Item item) {
 		itensPersonagem.add(item);
+	}
+	public void removerItem(Item item) {
+		itensPersonagem.remove(item);
 	}
 
 	@Override
