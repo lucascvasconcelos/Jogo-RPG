@@ -47,7 +47,7 @@ public class Fachada {
 	public static void selecionarPersonagem (String nome)throws Exception {
 		Personagem personagem = contaAtual.localizarPersonagem(nome);
 		if(personagem == null) {
-			throw new Exception("O personagem não existe em sua conta!");
+			throw new Exception("O personagem nao existe em sua conta!");
 		}
 		personagemAtual = personagem;
 	}
@@ -140,7 +140,7 @@ public class Fachada {
 			throw new Exception("Esse item nÃ£o existe!!");
 		}
 		if(personagemAtual == null) {
-			throw new Exception ("Você não selecionou nenhum personagem!");
+			throw new Exception ("Voce nao selecionou nenhum personagem!");
 		}
 		personagemAtual.addItem(item);
 		daopersonagem.update(personagemAtual);
@@ -154,7 +154,7 @@ public class Fachada {
 			throw new Exception("Esse item nÃ£o existe!!");
 		}
 		if(personagemAtual == null) {
-			throw new Exception ("Você não selecionou nenhum personagem!");
+			throw new Exception ("Voce nao selecionou nenhum personagem!");
 		}
 		personagemAtual.removerItem(item);
 		daopersonagem.update(personagemAtual);
@@ -167,7 +167,7 @@ public class Fachada {
 		DAO.begin();
 		Item itemEquipar = null;
 		if(personagemAtual == null) {
-			throw new Exception("Você não selecionou nenhum personagem!");
+			throw new Exception("Voce nao selecionou nenhum personagem!");
 		}
 		for(Item item: personagemAtual.getItensPersonagem()){
 			if(item.getNome().equals(nomeItem)) {
@@ -176,7 +176,7 @@ public class Fachada {
 		}
 		for (Item item2: personagemAtual.getItensEquipados()){
 			if(item2.getTipo().equals(itemEquipar.getTipo())) {
-				throw new Exception("Você já tem um item do mesmo tipo equipado.\nDesequipe ele primeiro. ("+item2.getNome()+")");
+				throw new Exception("Voce ja tem um item do mesmo tipo equipado.\nDesequipe ele primeiro. ("+item2.getNome()+")");
 			}
 		}
 		
@@ -199,7 +199,7 @@ public class Fachada {
 		DAO.begin();
 		Item itemEquipado = null;
 		if(personagemAtual == null) {
-			throw new Exception("Você não selecionou nenhum personagem!");
+			throw new Exception("Voce nao selecionou nenhum personagem!");
 		}
 		for(Item item: personagemAtual.getItensEquipados()){
 			if(item.getNome().equals(nomeItem)) {
@@ -225,7 +225,7 @@ public class Fachada {
 		DAO.begin();
 		Vendedor v = daovendedor.read(nome);
 		if(v!=null) {
-			throw new Exception("Já existe um vendedor com este nome.");
+			throw new Exception("Ja existe um vendedor com este nome.");
 		}
 		v = new Vendedor(nome);
 		daovendedor.create(v);
@@ -236,11 +236,11 @@ public class Fachada {
 		DAO.begin();
 		Vendedor v = daovendedor.read(nome);
 		if(v == null) {
-			throw new Exception("Este vendedor não existe");
+			throw new Exception("Este vendedor nao existe");
 		}
 		Item i = daoitem.read(nomeItem);
 		if(i==null) {
-			throw new Exception("Este item não existe.");
+			throw new Exception("Este item nao existe.");
 		}
 		v.adicionarItem(i);
 		daovendedor.update(v);
@@ -251,18 +251,18 @@ public class Fachada {
 	public static void comprarItem(String item)throws Exception {
 		DAO.begin();
 		if(contaAtual == null) {
-			throw new Exception ("Você não está logado.");
+			throw new Exception ("Voce nao esta logado.");
 		}
 		if(personagemAtual == null) {
-			throw new Exception("Você não selecionou nenhum personagem.");
+			throw new Exception("Voce nao selecionou nenhum personagem.");
 		}
 		Item i = daoitem.read(item);
 		if(i == null) {
-			throw new Exception("Este item não existe");
+			throw new Exception("Este item nao existe");
 		}
 		personagemAtual.addItem(i);
 		if(personagemAtual.getGold() - i.getPreco()<0) {
-			throw new Exception("Você não possui gold suficiente.");
+			throw new Exception("Voce nao possui gold suficiente.");
 		}
 		float decremento = personagemAtual.getGold() - i.getPreco();
 		personagemAtual.setGold(decremento);
