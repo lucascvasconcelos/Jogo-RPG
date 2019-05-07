@@ -47,6 +47,8 @@ public abstract class DAO<T> implements DAOInterface<T> {
 		// 		indexacao de atributos
 		config.common().objectClass(Personagem.class).objectField("nome").indexed(true);
 		config.common().objectClass(Conta.class).objectField("usuario").indexed(true);
+		config.common().objectClass(TipoPersonagem.class).objectField("descricao").indexed(true);
+
 
 		manager = 	Db4oEmbedded.openFile(config, "banco.db4o");
 	}
@@ -66,6 +68,8 @@ public abstract class DAO<T> implements DAOInterface<T> {
 //		// 		indexacao de atributos
 		config.common().objectClass(Personagem.class).objectField("titulo").indexed(true);
 		config.common().objectClass(Conta.class).objectField("usuario").indexed(true);
+		config.common().objectClass(TipoPersonagem.class).objectField("descricao").indexed(true);
+
 
 		String ip = JOptionPane.showInputDialog("Digite o IP do servidor");
 		if (ip==null || ip.isEmpty())	{

@@ -23,9 +23,13 @@ public class Teste {
 			Fachada.criarConta("usuario", "senha", "email");
 			Fachada.login("usuario", "senha");
 			Fachada.criarTipoPersonagem("guerreiro");
+			Fachada.criarTipoPersonagem("arqueiro");
+			Fachada.criarTipoPersonagem("assassino");
+
 			Fachada.criarPersonagem("Lucas", "guerreiro");
 			Fachada.criarItem("ARMADURA", 1, 2, 2, 2, 5, "ARMADURA");
 			Fachada.criarItem("ARMADURA BLACK", 1, 2, 2, 2, 5, "ARMADURA");
+			Fachada.criarItem("CAPACETE", 1, 2, 2, 2, 5, "CAPACETE");
 			Fachada.selecionarPersonagem("Lucas");
 			Fachada.adicionarItemPersonagem("ARMADURA");
 			Fachada.adicionarItemPersonagem("ARMADURA BLACK");

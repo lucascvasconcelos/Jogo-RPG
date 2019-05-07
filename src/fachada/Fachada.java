@@ -108,6 +108,14 @@ public class Fachada {
 		return lista;
 	}
 	
+	public static List<TipoPersonagem> listarTipo(){
+		System.out.println("kjashkldja");
+
+		List<TipoPersonagem> tipos = daotipopersonagem.readAll();
+		
+		return tipos;
+	}
+	
 	public static Conta criarConta(String usuario, String senha, String email) throws Exception{
 		DAO.begin();
 		
@@ -270,6 +278,4 @@ public class Fachada {
 		daopersonagem.update(personagemAtual);
 		DAO.commit();
 	}
-	
-	
 }
