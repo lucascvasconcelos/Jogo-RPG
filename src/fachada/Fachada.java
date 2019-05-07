@@ -32,15 +32,16 @@ public class Fachada {
 		if(contaAtual!=null) {
 			throw new Exception("Você já está logado!!");
 		}
-		List<Conta> contas = daoconta.readAll();
-		for(Conta c:contas) {
-			if(c.getUsuario().equals(usuario) && c.getSenha().equals(senha)) {
-				contaAtual = c;
-			}
-		}
-		if(contaAtual==null) {
-			throw new Exception("Usuário e senha inválidos!!");
-		}
+		
+		contaAtual = daoconta.readAll().get(0);
+//		for(Conta c:contas) {
+//			if(c.getUsuario().equals(usuario) && c.getSenha().equals(senha)) {
+//				contaAtual = c;
+//			}
+//		}
+//		if(contaAtual==null) {
+//			throw new Exception("Usuário e senha inválidos!!");
+//		}
 		
 	}
 	
@@ -106,6 +107,11 @@ public class Fachada {
 			lista += "\n" + personagem;
 		}
 		return lista;
+	}
+	
+	public static List<Personagem> listaPersonagem(){
+		System.out.println(contaAtual);
+		return contaAtual.getPersonagens();
 	}
 	
 	public static List<TipoPersonagem> listarTipo(){

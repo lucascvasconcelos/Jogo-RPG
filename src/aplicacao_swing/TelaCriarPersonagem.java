@@ -14,6 +14,7 @@ import modelo.TipoPersonagem;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
 
 public class TelaCriarPersonagem extends JFrame {
 	private static DAOTipoPersonagem daotipopersonagem = new DAOTipoPersonagem();
@@ -64,6 +65,10 @@ public class TelaCriarPersonagem extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(32, 139, 145, 24);
 		contentPane.add(comboBox);
+		
+		JButton btnNewButton = new JButton("Adicionar");
+		btnNewButton.setBounds(218, 139, 117, 25);
+		contentPane.add(btnNewButton);
 		for(TipoPersonagem t : Fachada.listarTipo()) {
 			comboBox.addItem(t.getDescricao());
 		}

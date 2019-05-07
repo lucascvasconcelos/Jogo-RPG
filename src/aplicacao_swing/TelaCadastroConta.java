@@ -79,20 +79,33 @@ public class TelaCadastroConta extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nomeUsuario = usuario.getText();
 				String emailUsuario = email.getText();
-				String senhaUsuario = senha.getText();
+				String senhaUsuario = String.valueOf(senha.getPassword());
 				try {
 					Conta c = Fachada.criarConta(nomeUsuario, senhaUsuario, emailUsuario);
 					JOptionPane.showMessageDialog(null, "Conta cadastrada com sucesso: " + c);
-					usuario.setText("");
-					email.setText("");
-					senha.setText("");
+//					TelaPrincipal telaPrincipal = new TelaPrincipal();
+//					JFrame frameTelaPrincipal = telaPrincipal.callback(true);
+//					frameTelaPrincipal.setVisible(true);
+					dispose();
+//					usuario.setText("");
+//					email.setText("");
+//					senha.setText("");
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(null, e2);
 				}
 			}
 		});
-		btnCadastrar.setBounds(292, 174, 117, 25);
+		btnCadastrar.setBounds(292, 150, 117, 25);
 		contentPane.add(btnCadastrar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setBounds(292, 200, 117, 25);
+		contentPane.add(btnCancelar);
 		
 		senha = new JPasswordField();
 		senha.setBounds(51, 194, 212, 19);

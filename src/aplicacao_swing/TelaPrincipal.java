@@ -64,6 +64,12 @@ public class TelaPrincipal {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
 				Fachada.inicializar();
+				try {
+					Fachada.login(null, null);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				JOptionPane.showMessageDialog(null, "sistema inicializado !");
 			}
 			@Override
@@ -119,6 +125,8 @@ public class TelaPrincipal {
 		JMenuItem mntmCriar = new JMenuItem("Adicionar");
 		mntmCriar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				TelaCriarPersonagem j = new TelaCriarPersonagem();
+				j.setVisible(true);
 			}
 		});
 		mnTelefone.add(mntmCriar);
@@ -126,20 +134,29 @@ public class TelaPrincipal {
 		JMenuItem mntmListar_1 = new JMenuItem("Listar");
 		mntmListar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				TelaListagem j = new TelaListagem();
-//				j.setVisible(true);
+				TelaListagemPersonagem j = new TelaListagemPersonagem();
+				j.setVisible(true);
 			}
 		});
 		mnTelefone.add(mntmListar_1);
-
-		JMenuItem mntmEquipar = new JMenuItem("Listar");
-		mntmListar_1.addActionListener(new ActionListener() {
+		
+		JMenuItem mntmEscolher = new JMenuItem("Escolher Personagem");
+		mntmEscolher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				TelaListagem j = new TelaListagem();
-//				j.setVisible(true);
+				TelaEscolhaPersonagem j = new TelaEscolhaPersonagem();
+				j.setVisible(true);
 			}
 		});
-		mnTelefone.add(mntmEquipar);
+		mnTelefone.add(mntmEscolher);
+
+//		JMenuItem mntmEquipar = new JMenuItem("Listar");
+//		mntmListar_1.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+////				TelaListagem j = new TelaListagem();
+////				j.setVisible(true);
+//			}
+//		});
+//		mnTelefone.add(mntmEquipar);
 		
 //		mnConsulta = new JMenu("Consultas");
 //		mnConsulta.addMouseListener(new MouseAdapter() {
@@ -152,5 +169,9 @@ public class TelaPrincipal {
 //			}
 //		});
 //		menuBar.add(mnConsulta);
+	}
+	
+	public JFrame callback(boolean opcao) {
+		return opcao ? frmPrincipal : null;		
 	}
 }
