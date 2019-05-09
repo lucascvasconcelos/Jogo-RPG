@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TelaRemoverPersonagem extends JFrame {
 
@@ -69,6 +70,8 @@ public class TelaRemoverPersonagem extends JFrame {
 					//comboBox.removeItem(String.valueOf(comboBox.getSelectedItem()));
 					JOptionPane.showMessageDialog(null, "Personagem excluido com sucesso: " + p);
 					dispose();
+					TelaListagemPersonagem j = new TelaListagemPersonagem();
+					j.setVisible(true);
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(null, e2.getMessage());
 				}
@@ -76,5 +79,16 @@ public class TelaRemoverPersonagem extends JFrame {
 		});
 		btnRemover.setBounds(124, 134, 117, 25);
 		contentPane.add(btnRemover);
+		
+		JButton btnSair = new JButton("Sair");
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnSair.setBackground(Color.RED);
+		btnSair.setForeground(Color.DARK_GRAY);
+		btnSair.setBounds(282, 198, 117, 25);
+		contentPane.add(btnSair);
 	}
 }

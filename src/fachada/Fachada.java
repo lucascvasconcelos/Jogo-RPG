@@ -47,6 +47,9 @@ public class Fachada {
 	}
 	
 	public static void selecionarPersonagem (String nome)throws Exception {
+		if(contaAtual==null) {
+			throw new Exception("Você precisa fazer login para adcionar personagens!");
+		}
 		Personagem personagem = contaAtual.localizarPersonagem(nome);
 		if(personagem == null) {
 			throw new Exception("O personagem nao existe em sua conta!");
@@ -287,8 +290,8 @@ public class Fachada {
 		DAO.commit();
 	}
 	
-	public static String consultaTipoPersonagemConta(String tipo) {
-		List<Personagem> result = contaAtual.getPersonagens();
-		
-	}
+//	public static String consultaTipoPersonagemConta(String tipo) {
+//		List<Personagem> result = contaAtual.getPersonagens();
+//		
+//	}
 }

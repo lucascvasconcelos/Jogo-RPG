@@ -12,12 +12,14 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import fachada.Fachada;
+import java.awt.Color;
 
 public class TelaListagemPersonagem extends JFrame {
 	private JPanel contentPane;
 	private JTextArea textArea;
 	private JButton btnCriar;
 	private JButton btnListarTelefones;
+	private JButton button;
 
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
@@ -66,5 +68,16 @@ public class TelaListagemPersonagem extends JFrame {
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		contentPane.add(scroll);
+		
+		button = new JButton("Sair");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		button.setForeground(Color.DARK_GRAY);
+		button.setBackground(Color.RED);
+		button.setBounds(367, 145, 117, 25);
+		contentPane.add(button);
 	}
 }

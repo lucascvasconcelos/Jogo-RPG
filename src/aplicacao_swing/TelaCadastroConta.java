@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TelaCadastroConta extends JFrame {
 
@@ -98,17 +99,19 @@ public class TelaCadastroConta extends JFrame {
 		btnCadastrar.setBounds(292, 150, 117, 25);
 		contentPane.add(btnCadastrar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
+		senha = new JPasswordField();
+		senha.setBounds(51, 194, 212, 19);
+		contentPane.add(senha);
+		
+		JButton button = new JButton("Sair");
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(292, 200, 117, 25);
-		contentPane.add(btnCancelar);
-		
-		senha = new JPasswordField();
-		senha.setBounds(51, 194, 212, 19);
-		contentPane.add(senha);
+		button.setForeground(Color.DARK_GRAY);
+		button.setBackground(Color.RED);
+		button.setBounds(302, 191, 117, 25);
+		contentPane.add(button);
 	}
 }

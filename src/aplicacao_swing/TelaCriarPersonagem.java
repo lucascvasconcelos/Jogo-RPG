@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.Color;
 
 public class TelaCriarPersonagem extends JFrame {
 	private static DAOTipoPersonagem daotipopersonagem = new DAOTipoPersonagem();
@@ -77,6 +78,8 @@ public class TelaCriarPersonagem extends JFrame {
 					Personagem p = Fachada.criarPersonagem(textField.getText(), String.valueOf(comboBox.getSelectedItem()));
 					JOptionPane.showMessageDialog(null, "Personagem cadastrado com sucesso: "+p);
 					dispose();
+					TelaListagemPersonagem j = new TelaListagemPersonagem();
+					j.setVisible(true);
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(null, e2.getMessage());
 				}
@@ -89,14 +92,16 @@ public class TelaCriarPersonagem extends JFrame {
 			comboBox.addItem(t.getDescricao());
 		}
 		
-		JButton btnCancelar = new JButton("Sair");
-		btnCancelar.addActionListener(new ActionListener() {
+		JButton button = new JButton("Sair");
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(311, 0, 117, 25);
-		contentPane.add(btnCancelar);
+		button.setForeground(Color.DARK_GRAY);
+		button.setBackground(Color.RED);
+		button.setBounds(311, 207, 117, 25);
+		contentPane.add(button);
 		
 	}
 }

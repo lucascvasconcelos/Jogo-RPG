@@ -36,9 +36,9 @@ public abstract class DAO<T> implements DAOInterface<T> {
 		EmbeddedConfiguration config =  Db4oEmbedded.newConfiguration(); 
 		config.common().messageLevel(0);  // 0,1,2,3...
 		config.common().objectClass(TipoPersonagem.class).cascadeOnDelete(false);;
-		config.common().objectClass(TipoPersonagem.class).cascadeOnUpdate(true);;
+		config.common().objectClass(TipoPersonagem.class).cascadeOnUpdate(false);;
 		config.common().objectClass(TipoPersonagem.class).cascadeOnActivate(true);	
-		config.common().objectClass(Personagem.class).cascadeOnDelete(true);;
+		config.common().objectClass(Personagem.class).cascadeOnDelete(false);;
 		config.common().objectClass(Personagem.class).cascadeOnUpdate(true);;
 		config.common().objectClass(Personagem.class).cascadeOnActivate(true);	
 		config.common().objectClass(Conta.class).cascadeOnDelete(false);;
@@ -57,9 +57,9 @@ public abstract class DAO<T> implements DAOInterface<T> {
 		ClientConfiguration config = Db4oClientServer.newClientConfiguration( ) ;
 		config.common().messageLevel(0);   //0,1,2,3,4
 		config.common().objectClass(TipoPersonagem.class).cascadeOnDelete(false);;
-		config.common().objectClass(TipoPersonagem.class).cascadeOnUpdate(true);;
+		config.common().objectClass(TipoPersonagem.class).cascadeOnUpdate(false);;
 		config.common().objectClass(TipoPersonagem.class).cascadeOnActivate(true);
-		config.common().objectClass(Personagem.class).cascadeOnDelete(true);;
+		config.common().objectClass(Personagem.class).cascadeOnDelete(false);;
 		config.common().objectClass(Personagem.class).cascadeOnUpdate(true);;
 		config.common().objectClass(Personagem.class).cascadeOnActivate(true);	
 		config.common().objectClass(Conta.class).cascadeOnDelete(false);;

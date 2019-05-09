@@ -17,12 +17,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private JButton button;
 
 	/**
 	 * Launch the application.
@@ -82,5 +84,16 @@ public class TelaLogin extends JFrame {
 		});
 		btnLogin.setBounds(87, 208, 117, 25);
 		contentPane.add(btnLogin);
+		
+		button = new JButton("Sair");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		button.setForeground(Color.DARK_GRAY);
+		button.setBackground(Color.RED);
+		button.setBounds(299, 208, 117, 25);
+		contentPane.add(button);
 	}
 }

@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TelaEscolhaPersonagem extends JFrame {
 
@@ -75,14 +76,16 @@ public class TelaEscolhaPersonagem extends JFrame {
 		btnSelecionar.setBounds(85, 121, 117, 25);
 		contentPane.add(btnSelecionar);
 		
-		JButton btnCancelar = new JButton("Sair");
-		btnCancelar.addActionListener(new ActionListener() {
+		JButton button = new JButton("Sair");
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(311, 12, 117, 25);
-		contentPane.add(btnCancelar);
+		button.setForeground(Color.DARK_GRAY);
+		button.setBackground(Color.RED);
+		button.setBounds(293, 197, 117, 25);
+		contentPane.add(button);
 		
 	}
 }
