@@ -8,16 +8,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import fachada.Fachada;
-import modelo.Conta;
 import modelo.Personagem;
 
-import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class TelaEscolhaPersonagem extends JFrame {
+public class TelaRemoverPersonagem extends JFrame {
 
 	private JPanel contentPane;
 
@@ -28,7 +28,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaEscolhaPersonagem frame = new TelaEscolhaPersonagem();
+					TelaRemoverPersonagem frame = new TelaRemoverPersonagem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class TelaEscolhaPersonagem extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaEscolhaPersonagem() {
+	public TelaRemoverPersonagem() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -48,41 +48,33 @@ public class TelaEscolhaPersonagem extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblEscolhaSeuPersonagem = new JLabel("Escolha seu personagem");
-		lblEscolhaSeuPersonagem.setBounds(33, 41, 228, 15);
-		contentPane.add(lblEscolhaSeuPersonagem);
-		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(33, 79, 169, 24);
+		comboBox.setBounds(86, 77, 145, 24);
 		contentPane.add(comboBox);
 		for(Personagem p:Fachada.listaPersonagem()){
 			comboBox.addItem(p.getNome());
 		}
 		
-		JButton btnSelecionar = new JButton("Selecionar");
-		btnSelecionar.addActionListener(new ActionListener() {
+		
+		JLabel lblEscolhaOPersonagem = new JLabel("Escolha o personagem que deseja remover");
+		lblEscolhaOPersonagem.setBounds(60, 36, 318, 15);
+		contentPane.add(lblEscolhaOPersonagem);
+		
+		
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				System.out.println(comboBox.getSelectedItem());
 				try {
-					Fachada.selecionarPersonagem(String.valueOf(comboBox.getSelectedItem()));
+					Personagem p = Fachada.removerPersonagem(String.valueOf(comboBox.getSelectedItem()));
+					//comboBox.removeItem(String.valueOf(comboBox.getSelectedItem()));
+					JOptionPane.showMessageDialog(null, "Personagem excluido com sucesso: " + p);
 					dispose();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, e2.getMessage());
 				}
 			}
 		});
-		btnSelecionar.setBounds(85, 121, 117, 25);
-		contentPane.add(btnSelecionar);
-		
-		JButton btnCancelar = new JButton("Sair");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btnCancelar.setBounds(311, 12, 117, 25);
-		contentPane.add(btnCancelar);
-		
+		btnRemover.setBounds(124, 134, 117, 25);
+		contentPane.add(btnRemover);
 	}
 }

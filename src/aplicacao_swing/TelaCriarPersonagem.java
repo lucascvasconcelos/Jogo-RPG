@@ -2,6 +2,8 @@ package aplicacao_swing;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,9 +11,11 @@ import javax.swing.border.EmptyBorder;
 
 import dao.DAOTipoPersonagem;
 import fachada.Fachada;
+import modelo.Personagem;
 import modelo.TipoPersonagem;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -67,10 +71,32 @@ public class TelaCriarPersonagem extends JFrame {
 		contentPane.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Adicionar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Personagem p = Fachada.criarPersonagem(textField.getText(), String.valueOf(comboBox.getSelectedItem()));
+					JOptionPane.showMessageDialog(null, "Personagem cadastrado com sucesso: "+p);
+					dispose();
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, e2.getMessage());
+				}
+			}
+			
+		});
 		btnNewButton.setBounds(218, 139, 117, 25);
 		contentPane.add(btnNewButton);
 		for(TipoPersonagem t : Fachada.listarTipo()) {
 			comboBox.addItem(t.getDescricao());
 		}
+		
+		JButton btnCancelar = new JButton("Sair");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setBounds(311, 0, 117, 25);
+		contentPane.add(btnCancelar);
+		
 	}
 }

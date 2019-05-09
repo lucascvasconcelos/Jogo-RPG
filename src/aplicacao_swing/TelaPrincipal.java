@@ -65,7 +65,7 @@ public class TelaPrincipal {
 			public void windowOpened(WindowEvent arg0) {
 				Fachada.inicializar();
 				try {
-					Fachada.login(null, null);
+//					Fachada.login(null, null);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -112,8 +112,8 @@ public class TelaPrincipal {
 		mntmListar = new JMenuItem("Login");
 		mntmListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-//				TelaListagem j = new TelaListagem();
-//				j.setVisible(true);
+				TelaLogin j = new TelaLogin();
+				j.setVisible(true);
 			}
 		});
 		mnPessoa.add(mntmListar);
@@ -148,27 +148,16 @@ public class TelaPrincipal {
 			}
 		});
 		mnTelefone.add(mntmEscolher);
-
-//		JMenuItem mntmEquipar = new JMenuItem("Listar");
-//		mntmListar_1.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-////				TelaListagem j = new TelaListagem();
-////				j.setVisible(true);
-//			}
-//		});
-//		mnTelefone.add(mntmEquipar);
 		
-//		mnConsulta = new JMenu("Consultas");
-//		mnConsulta.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent arg0) {
-//				TelaConsulta j = new TelaConsulta();
-//				j.setVisible(true);
-//
-//			
-//			}
-//		});
-//		menuBar.add(mnConsulta);
+		JMenuItem mntmRemover = new JMenuItem("Remover Personagem");
+		mntmRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaRemoverPersonagem j = new TelaRemoverPersonagem();
+				j.setVisible(true);
+			}
+		});
+		mnTelefone.add(mntmRemover);
+
 	}
 	
 	public JFrame callback(boolean opcao) {

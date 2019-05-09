@@ -51,6 +51,11 @@ public class Conta {
 	public void addPersonagem(Personagem personagem) {
 		personagens.add(personagem);
 	}
+
+	@Override
+	public String toString() {
+		return "Conta [usuario=" + usuario + ", email=" + email + "]";
+	}
 	
 	
 }

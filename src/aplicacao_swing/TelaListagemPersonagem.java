@@ -57,7 +57,7 @@ public class TelaListagemPersonagem extends JFrame {
 				}
 			}
 		});
-		btnCriar.setBounds(86, 149, 115, 23);
+		btnCriar.setBounds(71, 146, 222, 23);
 		contentPane.add(btnCriar);
 
 		textArea = new JTextArea();
@@ -66,20 +66,5 @@ public class TelaListagemPersonagem extends JFrame {
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		contentPane.add(scroll);
-//
-//		btnListarTelefones = new JButton("Listar Telefones");
-//		btnListarTelefones.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//				try{
-//
-//					textArea.setText(Fachada.listarTelefones());
-//				}
-//				catch(Exception erro){
-//					JOptionPane.showMessageDialog(null,erro.getMessage());
-//				}
-//			}
-//		});
-//		btnListarTelefones.setBounds(306, 149, 115, 23);
-//		contentPane.add(btnListarTelefones);
 	}
 }

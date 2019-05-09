@@ -28,21 +28,22 @@ public class Fachada {
 		DAO.close();
 	}
 	
-	public static void login(String usuario, String senha)throws Exception{
+	public static Conta login(String usuario, String senha)throws Exception{
 		if(contaAtual!=null) {
 			throw new Exception("Você já está logado!!");
 		}
 		
-		contaAtual = daoconta.readAll().get(0);
-//		for(Conta c:contas) {
-//			if(c.getUsuario().equals(usuario) && c.getSenha().equals(senha)) {
-//				contaAtual = c;
-//			}
-//		}
-//		if(contaAtual==null) {
-//			throw new Exception("Usuário e senha inválidos!!");
-//		}
-		
+//		contaAtual = daoconta.readAll().get(0);
+		List<Conta>contas = daoconta.readAll();
+		for(Conta c: contas) {
+			if(c.getUsuario().equals(usuario) && c.getSenha().equals(senha)) {
+				contaAtual = c;
+			}
+		}
+		if(contaAtual==null) {
+			throw new Exception("Usuário e senha inválidos!!");
+		}
+		return contaAtual;
 	}
 	
 	public static void selecionarPersonagem (String nome)throws Exception {
@@ -50,6 +51,7 @@ public class Fachada {
 		if(personagem == null) {
 			throw new Exception("O personagem nao existe em sua conta!");
 		}
+		
 		personagemAtual = personagem;
 	}
 	
@@ -90,19 +92,22 @@ public class Fachada {
 		return personagem;
 	}
 	
-	public static void removerPersonagem(String personagem) throws Exception{
+	public static Personagem removerPersonagem(String personagem) throws Exception{
 		DAO.begin();
 		Personagem p = daopersonagem.read(personagem);
 		if(p==null) {
 			throw new Exception("Personagem não existe!!");
 		}
+		contaAtual.getPersonagens().remove(p);
+		daoconta.update(contaAtual);
 		daopersonagem.delete(p);		
 		DAO.commit();
+		return p;
 	}
 	
 	public static String listarPersonagens() {
 		String lista = "\nLista de Personagens: ";
-		List<Personagem> personagens = daopersonagem.readAll();
+		List<Personagem> personagens = contaAtual.getPersonagens();
 		for(Personagem personagem : personagens) {
 			lista += "\n" + personagem;
 		}
@@ -110,13 +115,10 @@ public class Fachada {
 	}
 	
 	public static List<Personagem> listaPersonagem(){
-		System.out.println(contaAtual);
 		return contaAtual.getPersonagens();
 	}
 	
 	public static List<TipoPersonagem> listarTipo(){
-		System.out.println("kjashkldja");
-
 		List<TipoPersonagem> tipos = daotipopersonagem.readAll();
 		
 		return tipos;
@@ -283,5 +285,10 @@ public class Fachada {
 		
 		daopersonagem.update(personagemAtual);
 		DAO.commit();
+	}
+	
+	public static String consultaTipoPersonagemConta(String tipo) {
+		List<Personagem> result = contaAtual.getPersonagens();
+		
 	}
 }
